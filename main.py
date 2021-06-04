@@ -37,11 +37,15 @@ while True:
     print(" 1. search\n 2. print the database\n 3. exit")
     inp = int(input())
     if inp == 1:
-        result, i = init_search(), 0
+        result, i, count = init_search(), 0, 0
         while i < np.size(result, 0):
-            print(docids[result[i][0]],\
-                ":similarity index = %.3f"%result[i][1])
+            if result[i][1] != 0:
+                print(docids[result[i][0]],\
+                    ":similarity index = %.3f"%result[i][1])
+                count += 1
             i+=1
+        if count == 0:
+            print("No match found")
     elif inp == 2:
         rf.show_database(read_database)
     elif inp == 3:
